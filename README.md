@@ -1,86 +1,73 @@
-# Projet 2 — Poste multi-utilisateurs pour salle informatique
-
-## 📋 Contexte
-
-Un centre de formation veut équiper une salle informatique partagée par plusieurs étudiants qui se relaient dans la journée, chacun avec son propre espace protégé.
-
-## 🎯 Objectifs pédagogiques
-
--  Créer plusieurs comptes utilisateurs avec permissions différenciées
--  Configurer des dossiers personnels protégés
--  Mettre en place une politique de verrouillage de session
--  Définir une politique de mot de passe minimale
--  Séparer le compte de maintenance des comptes utilisateurs
-
 ---
-
-## 🛠️ Marche à suivre
-
-### Étape 1 — Installer le système d'exploitation
-
-- Créer une nouvelle VM sous VMware Workstation
-![Capture d'écran win11(1)](https://hackmd.io/_uploads/rkv2hUHYMx.png)
-![Capture d'écran win11(2)](https://hackmd.io/_uploads/HJyp2USYfl.png)
-![Capture d'écran win11(3)](https://hackmd.io/_uploads/rkdea8rYMx.png)
-![Capture d'écran win11(4)](https://hackmd.io/_uploads/B1b02UHKMg.png)
-- Allouer les ressources nécessaires (RAM, disque, CPU)
-![Capture d'écran win11(5)](https://hackmd.io/_uploads/r1mlaIBFMl.png)
-![Capture d'écran win11(6)](https://hackmd.io/_uploads/SJibaUSFfx.png)
-![Capture d'écran win11(7)](https://hackmd.io/_uploads/H1yf6LrYMx.png)
-![Capture d'écran win11(8)](https://hackmd.io/_uploads/B1MfpUSYfl.png)
-- Lancer l'installation du système d'exploitation choisi
-- Effectuer les réglages de base (langue, fuseau horaire, réseau)
-
-### Étape 2 — Créer un compte administrateur dédié à la maintenance
-
-- Créer un compte avec droits administrateur, distinct de tout compte d'usage courant
-- Nommer le compte de façon explicite (ex. `PC01_WIN11`)
-![Capture d'écran win11-compte01](https://hackmd.io/_uploads/Skj7OPLtGx.png)
-
-
-- Définir un mot de passe fort pour ce compte
-- Vérifier que ce compte n'est pas utilisé pour les tâches quotidiennes des étudiants
-
-### Étape 3 — Créer au moins 3 comptes utilisateurs standards
-
-- Créer 3 comptes (ou plus) avec droits **standards** (non-administrateurs)
-- Nommer chaque compte de façon claire (ex. `PC02_WIN11`, `PC03_WIN11`, `PC04_WIN11`)
-![Capture d'écran 2026-09-15 084539](https://hackmd.io/_uploads/ByhiYP8Yzl.png)
-
-- Attribuer un mot de passe initial à chaque compte
-![Capture d'écran win11-compte2](https://hackmd.io/_uploads/ryNdYw8Kzx.png)
-
-
-### Étape 4 — Configurer les permissions pour cloisonner les fichiers personnels
-
-- Vérifier que chaque compte dispose de son propre dossier personnel (profil utilisateur)
-![Capture d'écran 2026-09-15 085756](https://hackmd.io/_uploads/r16q3v8YMl.png)
-- Configurer les permissions NTFS/ACL (ou équivalentes) pour qu'un utilisateur ne puisse pas accéder aux fichiers d'un autre
-![Capture d'écran 2026-09-15 091458](https://hackmd.io/_uploads/rkcqlu8KMe.png)
-![Capture d'écran 2026-09-15 091517](https://hackmd.io/_uploads/Sywne_IYGx.png)
-### Étape 5 — Mettre en place le verrouillage automatique après inactivité
-
-- Configurer l'écran de verrouillage automatique après une période d'inactivité (ex. 5-10 minutes)
-![Capture d'écran 2026-09-15 095543](https://hackmd.io/_uploads/HJOGqu8YGe.png)
-
-- Vérifier que le déverrouillage nécessite le mot de passe du compte
-
-### Étape 6 — Définir une politique de mot de passe
-
-- Configurer une politique de mot de passe minimale (longueur, complexité)
-- Appliquer cette politique à l'ensemble des comptes standards
-![Capture d'écran 2026-09-15 101222](https://hackmd.io/_uploads/rk3gROIYze.png)
-
-
-### Étape 7 — Tester le cloisonnement avec chaque compte
-
-- Se connecter successivement à chaque compte utilisateur
-- Créer un fichier test dans chaque profil
-![Capture d'écran 2026-09-15 101941](https://hackmd.io/_uploads/B1Hn1YUFfe.png)
-- Vérifier qu'un compte ne peut pas consulter/modifier les fichiers d'un autre compte
-![Capture d'écran 2026-09-15 102105](https://hackmd.io/_uploads/rJu8gt8YGx.png)
-![Capture d'écran 2026-09-15 102218](https://hackmd.io/_uploads/BJTUetIKzx.png)
-- Tester l'accès refusé et noter le comportement observé
-![Capture d'écran 2026-09-15 103057](https://hackmd.io/_uploads/S1YUfY8YGe.png)
-
+title: Projet 3 — Migration et sauvegarde d'un poste existant
+---
+# Projet 3 — Migration et sauvegarde d'un poste existant
+**Cours de référence :** IT Essentials — Mettre en service un poste de travail ICT avec le système d'exploitation
+## Contexte
+Un poste vieillissant doit être réinstallé complètement, mais l'utilisateur souhaite retrouver ses documents et paramètres essentiels après l'opération.
+## Objectifs pédagogiques
+- Sauvegarder les données utilisateur avant réinstallation
+- Réinstaller proprement le système
+- Restaurer les données après installation
+- Documenter une procédure de migration reproductible
+---
+## Marche à suivre
+### Étape 1 — Inventaire des données à conserver
+- Identifier l'utilisateur et le poste concerné (nom, OS actuel, rôle du poste)
+- Lister les dossiers à sauvegarder (ex. `Documents`, `Bureau`, `Images`, `Téléchargements`, profil de messagerie, favoris navigateur)
+![Capture d'écran 2026-09-15 112253](https://hackmd.io/_uploads/Bytee5LKMx.png)
+- Lister les paramètres essentiels à conserver (papier peint, résolution, imprimante, connexions réseau/VPN, comptes de messagerie, favoris)
+- Lister les logiciels installés à réinstaller (nom + version si possible)
+![Capture d'écran 2026-09-15 112848](https://hackmd.io/_uploads/r1qJg58KMx.png)
+---
+### Étape 2 — Sauvegarde des données
+- Choisir le support de sauvegarde (disque externe, clé USB, partage réseau, cloud)
+- Copier l'ensemble des données identifiées à l'étape 1 vers le support choisi
+![Capture d'écran 2026-09-16 084946](https://hackmd.io/_uploads/HJ8733DtMl.png)
+- Exporter les paramètres spécifiques si nécessaire (favoris navigateur, profil de messagerie, pilotes d'imprimante)
+- Nommer clairement le dossier de sauvegarde (ex. `Backup_NomPoste_AAAAMMJJ`)
+![Capture d'écran 2026-09-16 084424](https://hackmd.io/_uploads/SkyJs3wFzl.png)
+---
+### Étape 3 — Vérification de l'intégrité de la sauvegarde
+- Comparer le nombre de fichiers et la taille totale entre la source et la sauvegarde
+- Ouvrir quelques fichiers au hasard depuis la sauvegarde pour vérifier qu'ils ne sont pas corrompus
+---
+### Étape 4 — Réinstallation propre du système d'exploitation
+- Préparer le support d'installation (clé USB bootable ou ISO)
+- Sauvegarder/noter la clé de licence si nécessaire
+- Supprimer les anciennes partitions et créer un nouveau partitionnement propre
+![Capture d'écran 2026-09-16 085353](https://hackmd.io/_uploads/rkOfThwKfl.png)
+- Démarrer sur le support d'installation
+![Capture d'écran win11(1)](https://hackmd.io/_uploads/BJ6R2nwFzl.png)
+- Installer le système d'exploitation
+![Capture d'écran win11(2)](https://hackmd.io/_uploads/r1ZhnhDKfl.png)
+- Installer les pilotes nécessaires (carte réseau, carte graphique, chipset, etc.)
+![Capture d'écran win11(6)](https://hackmd.io/_uploads/Syzs2hPFzl.png)
+![Capture d'écran win11(7)](https://hackmd.io/_uploads/r1MH62vKfx.png)
+![Capture d'écran win11(8)](https://hackmd.io/_uploads/HJTHTnwtzx.png)
+![Capture d'écran 2026-09-16 150428](https://hackmd.io/_uploads/HyExEMuYzl.png)
+- Effectuer les mises à jour Windows/OS
+---
+### Étape 5 — Réinstallation des logiciels nécessaires
+- Réinstaller les logiciels identifiés dans l'inventaire (étape 1)
+![Capture d'écran win11-instal](https://hackmd.io/_uploads/BJf_3nvYMx.png)
+- Vérifier que chaque logiciel se lance correctement
+- Mettre à jour les logiciels installés
+---
+### Étape 6 — Restauration des données et vérification
+- Copier les données depuis le support de sauvegarde vers l'emplacement d'origine
+- Vérifier que tous les fichiers attendus sont présents
+![Capture d'écran 2026-09-16 084946](https://hackmd.io/_uploads/HJ8733DtMl.png)
+- Réimporter les paramètres exportés (favoris, profil de messagerie, etc.)
+- Vérifier l'intégrité des données restaurées
+---
+### Étape 7 — Reconfiguration des paramètres essentiels
+- Reconfigurer le réseau (IP, Wi-Fi, VPN si nécessaire)
+![Capture d'écran win11-ip](https://hackmd.io/_uploads/HkA8FhvYMl.png)
+- Reconfigurer l'imprimante et les périphériques
+![Capture d'écran win11-inprim](https://hackmd.io/_uploads/S1WFK3DFGe.png)
+- Reconfigurer les comptes utilisateurs et permissions
+![Capture d'écran win11-comptes](https://hackmd.io/_uploads/HkRoY3wtfe.png)
+- Reconfigurer les paramètres d'affichage et de personnalisation
+- Vérifier le bon fonctionnement général du poste
 ---
